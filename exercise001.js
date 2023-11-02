@@ -10,12 +10,13 @@ const promise = new Promise((resolve, reject) => {
     setTimeout(() => reject("error"), 2000);
   }
 });
-const handleResolve = (response) => {
-  console.log(`Yay! Promise resolved with response: ${response}`);
-};
 
-const handleReject = (error) => {
-  console.log(`Boo. Promise rejected with response: ${error}`);
+const getPromiseResponse = async () => {
+  try {
+    const response = await promise;
+    await console.log(`Yay! Promise resolved with response: ${response}`);
+  } catch (error) {
+    console.log(`Boo. Promise rejected with response: ${error}`);
+  }
 };
-
-const value = promise.then(handleResolve).catch(handleReject);
+getPromiseResponse();
